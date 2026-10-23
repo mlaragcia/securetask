@@ -3,7 +3,9 @@ package com.garlamdev.apps.securetask.domain;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 
 class TaskTest{
@@ -17,34 +19,19 @@ class TaskTest{
     }
 
     @Test
-    public void shouldStarWithTodoStatus(){
+    public void shouldStartWithTodoStatus(){
         Task task = new Task("Learn Maven");
         assertEquals(TaskStatus.TODO, task.getStatus());
     }
 
-    @Test
-    public void shouldRejectNullTitle(){
-       
+
+    @ParameterizedTest
+    @NullAndEmptySource
+    @ValueSource(strings = {" ", "   "})
+    public void shouldRejectInvalidTitle(String title){
         assertThrows(
             IllegalArgumentException.class,
-            () -> new Task(null)
+            () -> new Task(title)
         );
     }
-
-    @Test
-    public void shouldRejectEmptyTitle(){
-        assertThrows(
-            IllegalArgumentException.class,
-            () -> new Task("")
-        );
-    }
-
-    @Test
-    public void shouldRejectBlankTitle(){
-        assertThrows(
-            IllegalArgumentException.class,
-            () -> new Task(" ")
-        );
-    }
-
 }
