@@ -6,8 +6,13 @@ public class Task {
     private TaskStatus status;
 
     public Task (String title){
+
         this.title = title;
         this.status = TaskStatus.TODO;
+
+         if(this.title == null){
+            throw new IllegalArgumentException("Title cannot be null");
+        }
     }
 
     public String getTitle(){
