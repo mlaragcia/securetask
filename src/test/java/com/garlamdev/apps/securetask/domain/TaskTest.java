@@ -31,4 +31,20 @@ class TaskTest{
         );
     }
 
+    @Test
+    public void shouldRejectEmptyTitle(){
+        assertThrows(
+            IllegalArgumentException.class,
+            () -> new Task("")
+        );
+    }
+
+    @Test
+    public void shouldRejectBlankTitle(){
+        assertThrows(
+            IllegalArgumentException.class,
+            () -> new Task(" ")
+        );
+    }
+
 }

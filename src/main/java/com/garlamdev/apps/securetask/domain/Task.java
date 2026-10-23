@@ -7,12 +7,13 @@ public class Task {
 
     public Task (String title){
 
+        if(title == null || title.isBlank()){
+            throw new IllegalArgumentException("Title cannot be null or empty");
+        }
         this.title = title;
         this.status = TaskStatus.TODO;
 
-         if(this.title == null){
-            throw new IllegalArgumentException("Title cannot be null");
-        }
+         
     }
 
     public String getTitle(){
