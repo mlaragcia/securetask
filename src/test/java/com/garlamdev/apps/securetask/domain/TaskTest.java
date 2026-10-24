@@ -113,4 +113,12 @@ class TaskTest{
 
         assertEquals(TaskPriority.HIGH, task.getPriority());
     }
+
+    @Test 
+    public void shouldRejectNullPriority(){
+        Task task = new Task("Learn Maven");
+
+        assertThrows(IllegalArgumentException.class,
+            () -> task.changePriority(null));
+    }
 }

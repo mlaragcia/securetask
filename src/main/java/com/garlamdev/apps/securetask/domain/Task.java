@@ -50,6 +50,9 @@ public class Task {
 
 
     public void changePriority(TaskPriority priority){
+        if(priority == null){
+            throw new IllegalArgumentException("Priority cannot be null");
+        }
         this.priority = priority;
     }
 
