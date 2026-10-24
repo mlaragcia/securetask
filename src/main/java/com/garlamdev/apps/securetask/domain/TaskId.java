@@ -22,6 +22,27 @@ public class TaskId {
         return this.uuid;
     }
 
+    @Override 
+    public boolean equals(Object object){
+        if (this == object) {
+
+            return true;
+            
+        }
+
+        if(!(object instanceof TaskId taskId)){
+            return false;
+        }
+
+        return this.uuid.equals(taskId.uuid);
+    }
+
+    @Override 
+    public int hashCode(){
+        return this.uuid.hashCode();
+    }
+
+
 
 
 

@@ -3,6 +3,10 @@ package com.garlamdev.apps.securetask.domain;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import java.util.UUID;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class TaskIdTest {
@@ -28,5 +32,25 @@ public class TaskIdTest {
     void shouldRejectNullUuid(){
         assertThrows(IllegalArgumentException.class,
             () -> new TaskId(null));
+    }
+
+    @Test 
+    void shouldBeEqualWhenUuidIsTheSame(){
+        UUID uuid = UUID.randomUUID();
+
+        TaskId first = new TaskId(uuid);
+        TaskId second = new TaskId(uuid);
+        assertEquals(first, second);
+    }
+
+    @Test 
+    void shouldHaveSameHashCodeWhenUuidIsTheSame(){
+        UUID uuid = UUID.randomUUID();
+        
+        TaskId first = new TaskId(uuid);
+        TaskId second = new TaskId(uuid);
+
+        assertEquals(first.hashCode(), second.hashCode());
+
     }
 }
