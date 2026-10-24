@@ -7,7 +7,11 @@ public class TaskId {
     private final UUID uuid;
 
     public TaskId(){
+        
         this.uuid = UUID.randomUUID();
+    }
+    public TaskId(UUID uuid){
+        this.uuid = uuid;
     }
 
     public UUID getValue(){
