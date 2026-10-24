@@ -54,4 +54,35 @@ class TaskTest{
             () -> task.start()
         );
     }
+
+    @Test 
+    public void shouldCompleteTask(){
+
+        Task task = new Task("Learn Maven");
+
+        task.start();
+        task.complete();
+
+        assertEquals(TaskStatus.DONE, task.getStatus());
+    }
+
+    @Test 
+    public void shouldNotCompleteTaskFromTodo(){
+        Task task = new Task("Learn Maven");
+
+        assertThrows(IllegalStateException.class,
+            () -> task.complete()
+        );
+    }
+
+    @Test 
+    public void shouldNotCompleteTaskAlreadyDone(){
+        Task task = new Task("Learn Maven");
+
+        task.start();
+        task.complete();
+
+        assertThrows(IllegalStateException.class,
+            () -> task.complete());
+    }
 }

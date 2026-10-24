@@ -32,5 +32,13 @@ public class Task {
         this.status = TaskStatus.IN_PROGRESS;
     }
 
+    public void complete(){
+        if(this.status != TaskStatus.IN_PROGRESS){
+            throw new IllegalStateException("Task can only be completed from IN_PROGRESS");
+
+        }
+        this.status = TaskStatus.DONE;
+    }
+
 
 }
