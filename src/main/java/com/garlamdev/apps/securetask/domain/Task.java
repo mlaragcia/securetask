@@ -24,5 +24,9 @@ public class Task {
         return this.status;
     }
 
+    public void start(){
+        this.status = TaskStatus.IN_PROGRESS;
+    }
+
 
 }

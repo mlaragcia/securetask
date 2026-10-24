@@ -34,4 +34,13 @@ class TaskTest{
             () -> new Task(title)
         );
     }
+
+    @Test
+    public void shouldStartTask(){
+        Task task = new Task("Learn Maven");
+
+        task.start();
+
+        assertEquals(TaskStatus.IN_PROGRESS, task.getStatus());
+    }
 }
