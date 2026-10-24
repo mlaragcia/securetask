@@ -10,32 +10,31 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class TaskIdTest {
-    
-    @Test 
-    void shouldGenerateId(){
+
+    @Test
+    void shouldGenerateId() {
 
         TaskId taskId = new TaskId();
         assertNotNull(taskId.getValue());
 
     }
 
-    @Test 
-    void shouldGenerateUniqueIds(){
+    @Test
+    void shouldGenerateUniqueIds() {
         TaskId first = new TaskId();
         TaskId second = new TaskId();
-
 
         assertNotEquals(first.getValue(), second.getValue());
     }
 
-    @Test 
-    void shouldRejectNullUuid(){
+    @Test
+    void shouldRejectNullUuid() {
         assertThrows(IllegalArgumentException.class,
-            () -> new TaskId(null));
+                () -> new TaskId(null));
     }
 
-    @Test 
-    void shouldBeEqualWhenUuidIsTheSame(){
+    @Test
+    void shouldBeEqualWhenUuidIsTheSame() {
         UUID uuid = UUID.randomUUID();
 
         TaskId first = new TaskId(uuid);
@@ -43,14 +42,24 @@ public class TaskIdTest {
         assertEquals(first, second);
     }
 
-    @Test 
-    void shouldHaveSameHashCodeWhenUuidIsTheSame(){
+    @Test
+    void shouldHaveSameHashCodeWhenUuidIsTheSame() {
         UUID uuid = UUID.randomUUID();
-        
+
         TaskId first = new TaskId(uuid);
         TaskId second = new TaskId(uuid);
 
         assertEquals(first.hashCode(), second.hashCode());
 
     }
+
+    @Test
+    void shouldCreateTaskIdFromExistingUuid() {
+        UUID uuid = UUID.randomUUID();
+
+        TaskId taskId = new TaskId(uuid);
+
+        assertEquals(uuid, taskId.getValue());
+    }
+
 }
