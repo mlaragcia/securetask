@@ -4,6 +4,7 @@ public class Task {
 
     private String title;
     private TaskStatus status;
+    private TaskPriority priority;
 
     public Task (String title){
 
@@ -12,6 +13,7 @@ public class Task {
         }
         this.title = title;
         this.status = TaskStatus.TODO;
+        this.priority = TaskPriority.MEDIUM;
 
          
     }
@@ -23,6 +25,14 @@ public class Task {
     public TaskStatus getStatus(){
         return this.status;
     }
+
+    public TaskPriority getPriority(){
+        return this.priority;
+    }
+
+
+
+
 
     public void start(){
         if(this.status != TaskStatus.TODO){

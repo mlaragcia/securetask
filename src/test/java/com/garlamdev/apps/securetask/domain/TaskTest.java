@@ -97,4 +97,11 @@ class TaskTest{
             () -> task.start()
         );
     }
+
+    @Test 
+    public void shouldStartWithMediumPriority(){
+        Task task = new Task("Learn Maven");
+
+        assertEquals(TaskPriority.MEDIUM, task.getPriority());
+    }
 }
