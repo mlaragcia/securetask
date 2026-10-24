@@ -85,4 +85,16 @@ class TaskTest{
         assertThrows(IllegalStateException.class,
             () -> task.complete());
     }
+
+    @Test 
+    public void shouldNotStartCompletedTask(){
+        Task task = new Task("Learn Maven");
+
+        task.start();
+        task.complete();
+
+        assertThrows(IllegalStateException.class,
+            () -> task.start()
+        );
+    }
 }
