@@ -104,4 +104,13 @@ class TaskTest{
 
         assertEquals(TaskPriority.MEDIUM, task.getPriority());
     }
+
+    @Test 
+    public void shouldChangePriority(){
+        Task task = new Task("Learn Maven");
+
+        task.changePriority(TaskPriority.HIGH);
+
+        assertEquals(TaskPriority.HIGH, task.getPriority());
+    }
 }

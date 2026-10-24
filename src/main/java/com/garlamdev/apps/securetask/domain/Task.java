@@ -32,8 +32,6 @@ public class Task {
 
 
 
-
-
     public void start(){
         if(this.status != TaskStatus.TODO){
             throw new IllegalStateException("Task can only be started from TODO");
@@ -48,6 +46,11 @@ public class Task {
 
         }
         this.status = TaskStatus.DONE;
+    }
+
+
+    public void changePriority(TaskPriority priority){
+        this.priority = priority;
     }
 
 
