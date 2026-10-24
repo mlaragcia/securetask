@@ -5,6 +5,7 @@ public class Task {
     private String title;
     private TaskStatus status;
     private TaskPriority priority;
+    private final TaskId taskId;
 
     public Task (String title){
 
@@ -14,6 +15,7 @@ public class Task {
         this.title = title;
         this.status = TaskStatus.TODO;
         this.priority = TaskPriority.MEDIUM;
+        this.taskId = new TaskId();
 
          
     }
@@ -28,6 +30,10 @@ public class Task {
 
     public TaskPriority getPriority(){
         return this.priority;
+    }
+
+    public TaskId getTaskId(){
+        return this.taskId;
     }
 
 

@@ -2,6 +2,8 @@ package com.garlamdev.apps.securetask.domain;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
@@ -12,14 +14,14 @@ class TaskTest{
 
 
     @Test
-    public void shouldTaskReceive(){
+    void shouldTaskReceive(){
         Task task = new Task("Learn Maven");
 
         assertEquals("Learn Maven",task.getTitle());
     }
 
     @Test
-    public void shouldStartWithTodoStatus(){
+    void shouldStartWithTodoStatus(){
         Task task = new Task("Learn Maven");
         assertEquals(TaskStatus.TODO, task.getStatus());
     }
@@ -28,7 +30,7 @@ class TaskTest{
     @ParameterizedTest
     @NullAndEmptySource
     @ValueSource(strings = {" ", "   "})
-    public void shouldRejectInvalidTitle(String title){
+    void shouldRejectInvalidTitle(String title){
         assertThrows(
             IllegalArgumentException.class,
             () -> new Task(title)
@@ -36,7 +38,7 @@ class TaskTest{
     }
 
     @Test
-    public void shouldStartTask(){
+    void shouldStartTask(){
         Task task = new Task("Learn Maven");
 
         task.start();
@@ -45,7 +47,7 @@ class TaskTest{
     }
 
     @Test 
-    public void shouldNoStartTaskAlreadyInProgress(){
+    void shouldNoStartTaskAlreadyInProgress(){
 
         Task task = new Task("Learn Maven");
 
@@ -56,7 +58,7 @@ class TaskTest{
     }
 
     @Test 
-    public void shouldCompleteTask(){
+    void shouldCompleteTask(){
 
         Task task = new Task("Learn Maven");
 
@@ -67,7 +69,7 @@ class TaskTest{
     }
 
     @Test 
-    public void shouldNotCompleteTaskFromTodo(){
+    void shouldNotCompleteTaskFromTodo(){
         Task task = new Task("Learn Maven");
 
         assertThrows(IllegalStateException.class,
@@ -76,7 +78,7 @@ class TaskTest{
     }
 
     @Test 
-    public void shouldNotCompleteTaskAlreadyDone(){
+    void shouldNotCompleteTaskAlreadyDone(){
         Task task = new Task("Learn Maven");
 
         task.start();
@@ -87,7 +89,7 @@ class TaskTest{
     }
 
     @Test 
-    public void shouldNotStartCompletedTask(){
+    void shouldNotStartCompletedTask(){
         Task task = new Task("Learn Maven");
 
         task.start();
@@ -99,14 +101,14 @@ class TaskTest{
     }
 
     @Test 
-    public void shouldStartWithMediumPriority(){
+    void shouldStartWithMediumPriority(){
         Task task = new Task("Learn Maven");
 
         assertEquals(TaskPriority.MEDIUM, task.getPriority());
     }
 
     @Test 
-    public void shouldChangePriority(){
+    void shouldChangePriority(){
         Task task = new Task("Learn Maven");
 
         task.changePriority(TaskPriority.HIGH);
@@ -115,10 +117,25 @@ class TaskTest{
     }
 
     @Test 
-    public void shouldRejectNullPriority(){
+    void shouldRejectNullPriority(){
         Task task = new Task("Learn Maven");
 
         assertThrows(IllegalArgumentException.class,
             () -> task.changePriority(null));
+    }
+
+    @Test 
+    void shouldGenerateIdWhenTaskIsCreated(){
+        Task task = new Task("Learn Maven");
+
+        assertNotNull(task.getTaskId());
+    }
+
+    @Test 
+    void shouldGenerateDifferentIdsForDifferentTasks(){
+        Task first = new Task("Learn Maven");
+        Task second = new Task("Learn Java");
+
+        assertNotEquals(first.getTaskId().getValue(), second.getTaskId().getValue());
     }
 }
