@@ -43,4 +43,15 @@ class TaskTest{
 
         assertEquals(TaskStatus.IN_PROGRESS, task.getStatus());
     }
+
+    @Test 
+    public void shouldNoStartTaskAlreadyInProgress(){
+
+        Task task = new Task("Learn Maven");
+
+        task.start();
+        assertThrows(IllegalStateException.class, 
+            () -> task.start()
+        );
+    }
 }

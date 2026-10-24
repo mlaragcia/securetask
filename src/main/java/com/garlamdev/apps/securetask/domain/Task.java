@@ -25,6 +25,10 @@ public class Task {
     }
 
     public void start(){
+        if(this.status != TaskStatus.TODO){
+            throw new IllegalStateException("Task can only be started from TODO");
+        }
+
         this.status = TaskStatus.IN_PROGRESS;
     }
 
