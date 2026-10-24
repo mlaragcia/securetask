@@ -2,6 +2,7 @@ package com.garlamdev.apps.securetask.domain;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class TaskIdTest {
@@ -21,5 +22,11 @@ public class TaskIdTest {
 
 
         assertNotEquals(first.getValue(), second.getValue());
+    }
+
+    @Test 
+    void shouldRejectNullUuid(){
+        assertThrows(IllegalArgumentException.class,
+            () -> new TaskId(null));
     }
 }
